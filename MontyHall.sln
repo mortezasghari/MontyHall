@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MontyHallLibrary", "MontyHallLibrary\MontyHallLibrary.csproj", "{5D7BC906-4951-424F-9CBB-A88252436A54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MontyHallConsole", "MontyHallConsole\MontyHallConsole.csproj", "{92812F45-093E-4284-B33F-965B40DDCBD8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MontyHallTest", "MontyHallTest\MontyHallTest.csproj", "{25E749CC-5774-4453-9FC3-C0436FB4AC44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MontyHallTest", "MontyHallTest\MontyHallTest.csproj", "{25E749CC-5774-4453-9FC3-C0436FB4AC44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{5D7BC906-4951-424F-9CBB-A88252436A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D7BC906-4951-424F-9CBB-A88252436A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D7BC906-4951-424F-9CBB-A88252436A54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92812F45-093E-4284-B33F-965B40DDCBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92812F45-093E-4284-B33F-965B40DDCBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92812F45-093E-4284-B33F-965B40DDCBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92812F45-093E-4284-B33F-965B40DDCBD8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25E749CC-5774-4453-9FC3-C0436FB4AC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25E749CC-5774-4453-9FC3-C0436FB4AC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25E749CC-5774-4453-9FC3-C0436FB4AC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
