@@ -1,0 +1,22 @@
+﻿@page "/"
+@inject HttpClient Http
+
+<EditForm Model="@simulationDto" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+<p>
+    <label> 
+        Number of Simulation
+        <InputNumber @bind-Value="simulationDto.Repetation"></InputNumber>
+    </label>
+</p>
+<p>
+    <label>
+        Change The Selected Box
+        <InputCheckbox @bind-Value="simulationDto.ShouldChange"></InputCheckbox>
+    </label>
+</p>
+
+<button type="submit">Submit</button>
+
+</EditForm>

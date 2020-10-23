@@ -12,9 +12,16 @@ namespace MontyHallLibrary
             return false;
         }
 
-        public override string ResultString()
+        public override string ToString()
         {
-            return "Empty";
+            if (IsOpen)
+            {
+                return "Empty";
+            }
+            else
+            {
+                return "UnKnown";
+            }
         }
     }
 }
