@@ -1,4 +1,5 @@
-﻿using MontyHallWeb.Shared;
+﻿using Microsoft.Extensions.Configuration;
+using MontyHallWeb.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace MontyHallWeb.Client.Pages
     public partial class Index
     {
         private MontyHallSimulationDto simulationDto = new MontyHallSimulationDto();
-        private MontyHallSimulationResultDto resultDto;
+        private List<MontyHallSimulationResultDto> resultDto = new List<MontyHallSimulationResultDto>();
+
+
         private void HandleValidSubmit()
         {
-            PostData().Wait();
+            PostData();
         }
         protected async Task PostData()
         {
@@ -24,8 +27,26 @@ namespace MontyHallWeb.Client.Pages
 
             if (result.IsSuccessStatusCode)
             {
-                resultDto = await result.Content.ReadFromJsonAsync<MontyHallSimulationResultDto>();
+                try
+                {
+                    resultDto.Add(await result.Content.ReadFromJsonAsync<MontyHallSimulationResultDto>());
+                    StateHasChanged();
+                }
+                catch (Exception e)
+                {
+                    await ShowMessage(e.Message);
+                }
             }
+            else
+            {
+                await ShowMessage(result.ReasonPhrase);
+            }
+        }
+
+        private async Task ShowMessage(string message)
+        {
+            
+            await JsRuntime.InvokeAsync<bool>("alert", new object[] { message });
         }
     }
 }

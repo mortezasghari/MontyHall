@@ -1,22 +1,52 @@
 ﻿@page "/"
 @inject HttpClient Http
+@inject IJSRuntime JsRuntime;
 
-<EditForm Model="@simulationDto" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@simulationDto" OnValidSubmit="@HandleValidSubmit" class="card card-body bg-light col-md-5">
     <DataAnnotationsValidator />
     <ValidationSummary />
-<p>
-    <label> 
-        Number of Simulation
-        <InputNumber @bind-Value="simulationDto.Repetation"></InputNumber>
-    </label>
-</p>
-<p>
-    <label>
-        Change The Selected Box
+<div class="form-group row">
+    <label class="col-md-6 col-form-label"> Number of Simulation: </label>
+       <div class="col-md-6">
+        <InputNumber class="form-control" @bind-Value="simulationDto.Repetation"></InputNumber>
+       </div>
+    
+</div>
+<div class="form-group row">
+
+    <label class="col-md-6 col-form-label">Should Change?</label>
+    <div class="col-md-1"> 
         <InputCheckbox @bind-Value="simulationDto.ShouldChange"></InputCheckbox>
-    </label>
-</p>
-
-<button type="submit">Submit</button>
-
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-right">
+    <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</div>
 </EditForm>
+
+<br />
+<table class="table" >
+<thead>
+  <tr>
+      <th>Simulation Date Time</th>
+      <th>Repetation</th>
+      <th>Should Change?</th>
+      <th>Number of Wins</th>
+      <th>Success Persentage</th>
+  </tr>
+  </thead>
+  <tbody>
+      @foreach (var result in resultDto)
+            {
+                <tr>
+                    <td>@result.SimulationTime.ToString()</td>
+                    <td>@result.Repetation</td>
+                    <td>@result.ShouldChange</td>
+                    <td>@result.Wins</td>
+                    <td>@result.Persentage</td>
+                </tr>
+            }
+  </tbody>
+</table>
