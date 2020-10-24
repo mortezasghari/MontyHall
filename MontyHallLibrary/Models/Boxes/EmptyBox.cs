@@ -9,19 +9,14 @@ namespace MontyHallLibrary
     {
         public override bool Result()
         {
+            CheckIsClose();
             return false;
         }
 
         public override string ToString()
         {
-            if (IsOpen)
-            {
-                return "Empty";
-            }
-            else
-            {
-                return "UnKnown";
-            }
+            var output = base.ToString();
+            return output is null ? "Empty" : output;
         }
     }
 }

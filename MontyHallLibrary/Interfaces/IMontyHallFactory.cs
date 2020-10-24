@@ -8,9 +8,9 @@ namespace MontyHallLibrary.Contracts
     {
         IMontyHallFactory Clear();
 
-        IMontyHallFactory AddBox(IMontyHallBox box);
+        IMontyHallFactory AddBox(IBox box);
 
-        IMontyHallGameContext Build(int NumberofHelp);
+        IMontyHallContext Build(int NumberofHelp);
 
     }
 }

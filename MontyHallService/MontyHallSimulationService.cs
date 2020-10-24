@@ -77,7 +77,7 @@ namespace MontyHallService
 
         }
 
-        private IMontyHallGameContext Factory()
+        private IMontyHallContext Factory()
         {
             _factory.Clear();
             var prizesDic = RandomizePrizes();

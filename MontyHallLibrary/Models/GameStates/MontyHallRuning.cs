@@ -1,4 +1,5 @@
-﻿using MontyHallLibrary.Contracts;
+﻿using MontyHallLibrary.Abstracts;
+using MontyHallLibrary.Contracts;
 using MontyHallLibrary.Contracts.Abstracts;
 using MontyHallLibrary.Helper;
 using System;
@@ -11,45 +12,31 @@ using System.Xml;
 
 namespace MontyHallLibrary.Models.GameStates
 {
-    public class MontyHallGameRuning : IMontyHallGame
+    public class MontyHallRuning : MontyHallAbstractGame
     {
-        private readonly Dictionary<int, IMontyHallBox> _boxes;
-        private readonly Random _rand;
+        KeyValuePair<int, IBox> _selected;
 
-        KeyValuePair<int, IMontyHallBox> _selected;
-        
-
-        public MontyHallGameRuning(Dictionary<int, IMontyHallBox> boxes, Random rand, int numberOfHelp, int selectedKey)
+        public MontyHallRuning(Dictionary<int, IBox> boxes, Random rand, int numberOfHelp, int selectedKey)
+            : base(boxes, rand, numberOfHelp)
         {
-            if (boxes.Count(b => b.Value is EmptyBox) <= numberOfHelp)
-            {
-                throw new ArgumentOutOfRangeException("Number of help should be smaller than number of Empty boxes.");
-            }
-
-            _boxes = boxes ?? throw new ArgumentNullException(nameof(boxes));
-            _rand = rand ?? throw new ArgumentNullException(nameof(rand));
-            NumberOfRemainingHelp = numberOfHelp;
             this.Select(selectedKey);
-
         }
 
-        public int NumberOfRemainingHelp { get; private set; }
-
-        public bool FinishGame(IStateManager Context)
+        public override bool FinishGame(Contracts.Abstracts.IMontyHallContextManager Context)
         {
 
-            var newContext = new MontyHallGameFinished(_selected.Value);
+            var newContext = new MontyHallFinished(_selected.Value);
             Context.ChangeState(newContext);
             return newContext.FinishGame(Context);
 
         }
 
-        public string GameResult()
+        public override string GameResult()
         {
             throw new InvalidOperationException("Game is not finished yet.");
         }
 
-        public void GetHelp()
+        public override void GetHelp()
         {
             if (NumberOfRemainingHelp < 1)
             {
@@ -64,14 +51,14 @@ namespace MontyHallLibrary.Models.GameStates
                 .RandomSelection(_rand);
         }
 
-        public IList<int> RemainingKeys()
+        public override IList<int> RemainingKeys()
         {
             return _boxes.Where(b => b.Value.IsOpen == false && b.Key != _selected.Key)
                 .Select(b => b.Key)
                 .ToList();
         }
 
-        public void Select(IStateManager context, int key)
+        public override void Select(Contracts.Abstracts.IMontyHallContextManager context, int key)
         {
             Select(key);
         }
@@ -86,13 +73,13 @@ namespace MontyHallLibrary.Models.GameStates
             }
             else
             {
-                _selected = new KeyValuePair<int, IMontyHallBox>(key, box);
+                _selected = new KeyValuePair<int, IBox>(key, box);
             }
         }
 
-        private IMontyHallBox GetBoxByKey(int key)
+        private IBox GetBoxByKey(int key)
         {
-            if (_boxes.TryGetValue(key, out IMontyHallBox box))
+            if (_boxes.TryGetValue(key, out IBox box))
             {
                 return box; 
             }
@@ -100,6 +87,11 @@ namespace MontyHallLibrary.Models.GameStates
             {
                 throw new InvalidOperationException("Provided Key is not valid.");
             }
+        }
+
+        public override string ToString()
+        {
+            return $"Selected box: {_selected.Key}; {base.ToString()}";
         }
     }
 }

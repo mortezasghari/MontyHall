@@ -6,13 +6,13 @@ using System.Xml;
 
 namespace MontyHallLibrary.Contracts
 {
-    public abstract class MontyHallBox : IMontyHallBox
+    public abstract class MontyHallBox : IBox
     {
         protected bool _isOpen = false;
 
         public bool IsOpen
         {
-            get => _isOpen; 
+            get => _isOpen;
             set
             {
                 /// A Box Which has been open cant be closed. 
@@ -24,6 +24,26 @@ namespace MontyHallLibrary.Contracts
         }
 
         public abstract bool Result();
-        
+
+        protected void CheckIsClose()
+        {
+            if (!IsOpen)
+            {
+                throw new InvalidOperationException("The box is close.");
+            }
+        }
+
+
+        public override string ToString()
+        {
+            if (IsOpen)
+            {
+                return null;
+            }
+            else
+            {
+                return "Closed";
+            }
+        }
     }
 }

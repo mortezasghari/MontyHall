@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MontyHallLibrary.Contracts
 {
-    public interface IMontyHallGame : IMontyHall, IGameProcess
+    public interface IBasicMontyHallStates : IMontyHall, IMontyHallUpdateStates
     {
         
     }

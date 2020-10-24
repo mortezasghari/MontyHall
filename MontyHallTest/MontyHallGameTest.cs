@@ -9,10 +9,10 @@ namespace MontyHallTest
 {
     public class MontyHallGameTest
     {
-        Dictionary<int, IMontyHallBox> _boxes;
+        Dictionary<int, IBox> _boxes;
         public MontyHallGameTest()
         {
-            _boxes = new Dictionary<int, IMontyHallBox>();
+            _boxes = new Dictionary<int, IBox>();
             _boxes.Add(_boxes.Count, new EmptyBox());
             _boxes.Add(_boxes.Count, new PrizedBox("Car"));
             _boxes.Add(_boxes.Count, new EmptyBox());

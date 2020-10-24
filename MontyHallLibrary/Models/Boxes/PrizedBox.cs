@@ -16,19 +16,15 @@ namespace MontyHallLibrary
 
         public override bool Result()
         {
+            CheckIsClose();
             return true;
         }
 
         public override string ToString()
         {
-            if (IsOpen)
-            {
-                return _prizeName;
-            }
-            else
-            {
-                return "UnKnown";
-            }
+
+            var output = base.ToString();
+            return output is null ? _prizeName : output;
         }
     }
 }

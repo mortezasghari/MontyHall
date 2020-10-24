@@ -1,26 +1,21 @@
 ﻿using MontyHallLibrary.Contracts;
-using MontyHallLibrary.Contracts.Abstracts;
-using MontyHallLibrary.Helper;
-using MontyHallLibrary.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
 
 namespace MontyHallLibrary
 {
-    public class MontyHallGame : IMontyHallGameContext
+    public class MontyHallContexts : IMontyHallContext
     {
-        private IMontyHallGame _state;
+        private IBasicMontyHallStates _state;
 
-        public MontyHallGame(IMontyHallGame state)
+        public MontyHallContexts(IBasicMontyHallStates state)
         {
             this._state = state ?? throw new ArgumentNullException(nameof(state));
         }
 
         public int NumberOfRemainingHelp => _state.NumberOfRemainingHelp;
 
-        public void ChangeState(IMontyHallGame state)
+        public void ChangeState(IBasicMontyHallStates state)
         {
             _state = state;
         }

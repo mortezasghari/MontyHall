@@ -5,10 +5,7 @@ using System.Text;
 
 namespace MontyHallLibrary.Contracts
 {
-    public interface IMontyHallBox
+    public interface IMontyHallContext: IMontyHall, IMontyHallContextManager
     {
-        bool Result();
-
-        bool IsOpen { get; set; }
     }
 }

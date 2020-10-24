@@ -27,7 +27,5 @@ namespace MontyHallLibrary.Contracts.Abstracts
         /// </summary>
         /// <returns>It will return a message which indicates you won or lost.</returns>
         string GameResult();
-
-        
     }
 }

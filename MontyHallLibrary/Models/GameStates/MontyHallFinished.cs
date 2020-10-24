@@ -7,18 +7,18 @@ using System.Text.RegularExpressions;
 
 namespace MontyHallLibrary.Models.GameStates
 {
-    public class MontyHallGameFinished : IMontyHallGame
+    public class MontyHallFinished : IBasicMontyHallStates
     {
-        private readonly IMontyHallBox _selectedBox;
+        private readonly IBox _selectedBox;
 
-        public MontyHallGameFinished(IMontyHallBox selectedBox)
+        public MontyHallFinished(IBox selectedBox)
         {
             _selectedBox = selectedBox;
         }
 
         public int NumberOfRemainingHelp => 0;
 
-        public bool FinishGame(IStateManager Context)
+        public bool FinishGame(Contracts.Abstracts.IMontyHallContextManager Context)
         {
             _selectedBox.IsOpen = true;
             return _selectedBox.Result();
@@ -39,9 +39,14 @@ namespace MontyHallLibrary.Models.GameStates
             return new int[] { };
         }
 
-        public void Select(IStateManager context, int key)
+        public void Select(Contracts.Abstracts.IMontyHallContextManager context, int key)
         {
             throw new InvalidOperationException("Game has finished.");
+        }
+
+        public override string ToString()
+        {
+            return GameResult();
         }
     }
 }

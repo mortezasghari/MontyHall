@@ -10,30 +10,30 @@ namespace MontyHallLibrary.Contracts
 {
     public class MontyHallFactory : IMontyHallFactory
     {
-        private Dictionary<int, IMontyHallBox> _boxes;
+        private Dictionary<int, IBox> _boxes;
         private Random _rand;
 
         public MontyHallFactory(Random rand)
         {
             _rand = rand ?? throw new ArgumentNullException(nameof(rand));
-            _boxes = new Dictionary<int, IMontyHallBox>();
+            _boxes = new Dictionary<int, IBox>();
         }
 
-        public IMontyHallFactory AddBox(IMontyHallBox box)
+        public IMontyHallFactory AddBox(IBox box)
         {
             _boxes.Add(_boxes.Count, box);
             return this;
         }
 
-        public IMontyHallGameContext Build(int numberofHelp)
+        public IMontyHallContext Build(int numberofHelp)
         {
-            var game = new MontyHallGameInitial(_boxes, _rand, numberofHelp);
-            return new MontyHallGame(game);
+            var game = new MontyHallInitial(_boxes, _rand, numberofHelp);
+            return new MontyHallContexts(game);
         }
 
         public IMontyHallFactory Clear()
         {
-            _boxes = new Dictionary<int, IMontyHallBox>();
+            _boxes = new Dictionary<int, IBox>();
             return this;
         }
     }
