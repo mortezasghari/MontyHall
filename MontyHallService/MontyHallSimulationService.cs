@@ -26,24 +26,35 @@ namespace MontyHallService
             _rand = rand ?? throw new ArgumentNullException(nameof(rand));
         }
 
+        /// <summary>
+        /// Simulation Implentation.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public MontyHallSimulationResultDto Run(MontyHallSimulationDto input)
         {
+            ///Validate Setting is Okey
             if (_setting.Validate())
             {
                 int wins = 0;
 
                 for (int i = 0; i < input.Repetation; i++)
                 {
+                    /// Create The game context.
                     var game = Factory();
 
+                    /// Pick a Random Number.
                     int select = game.RemainingKeys().RandomSelection(_rand);
 
+                    /// Select a Box
                     game.Select(select);
 
+                    /// You can ask for as much help as the game allows.
                     for (int j = 0; j < _setting.Helps; j++)
                     {
                         game.GetHelp();
 
+                        /// If Simulation asks for you can change your selection. 
                         if (input.ShouldChange)
                         {
                             select = game.RemainingKeys().RandomSelection(_rand);
@@ -52,19 +63,21 @@ namespace MontyHallService
                         }
                     }
 
+                    /// Finish the game and check if You won or lost. 
                     if (game.FinishGame())
                     {
                         wins++;
                     }
                 }
 
-                double persentage = (double)wins / input.Repetation;
+                /// Calculate the win persentage
+                double percentage = (double)wins / input.Repetation;
 
                 return new MontyHallSimulationResultDto
                 {
                     Wins = wins,
                     Repetation = input.Repetation,
-                    Persentage = persentage.ToString("P", CultureInfo.InvariantCulture),
+                    Percentage = percentage.ToString("P", CultureInfo.InvariantCulture),
                     ShouldChange = input.ShouldChange,
                     SimulationTime = DateTime.Now
                 };
@@ -77,6 +90,10 @@ namespace MontyHallService
 
         }
 
+        /// <summary>
+        /// Create the Game Context using Monty Hall Factory.
+        /// </summary>
+        /// <returns></returns>
         private IMontyHallContext Factory()
         {
             _factory.Clear();
@@ -85,6 +102,10 @@ namespace MontyHallService
             return _factory.Build(_setting.Helps);
         }
 
+        /// <summary>
+        /// Alocates Prizes Randomly
+        /// </summary>
+        /// <returns></returns>
         private Dictionary<int, string> RandomizePrizes()
         {
             Dictionary<int, string> output = new Dictionary<int, string>();
@@ -107,6 +128,10 @@ namespace MontyHallService
             return output;
         }
 
+        /// <summary>
+        /// Create the Boxes.
+        /// </summary>
+        /// <param name="prizes"></param>
         private void CreateBoxes(Dictionary<int, string> prizes)
         {
 

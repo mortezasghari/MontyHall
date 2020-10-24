@@ -14,7 +14,11 @@ namespace MontyHallLibrary.Abstracts
 
         protected MontyHallAbstractGame(Dictionary<int, IBox> boxes, Random rand, int numberOfHelp)
         {
-            if (boxes.Count(b => b.Value is EmptyBox) <= numberOfHelp)
+            if (!boxes.Any(b => b.Value is PrizedBox))
+            {
+                throw new InvalidOperationException("Atleast one box should contain Prize.");
+            }
+            else if (boxes.Count(b => b.Value is EmptyBox) <= numberOfHelp)
             {
                 throw new ArgumentOutOfRangeException("Number of help should be smaller than number of Empty boxes.");
             }

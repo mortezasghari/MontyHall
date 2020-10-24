@@ -7,6 +7,12 @@ namespace MontyHallService.Contracts
 {
     public interface IMontyHallSimulationService
     {
+
+        /// <summary>
+        /// Runing the Simulation.
+        /// </summary>
+        /// <param name="input">Input Paramertes</param>
+        /// <returns>Simulation Result</returns>
         MontyHallSimulationResultDto Run(MontyHallSimulationDto input);
     }
 }

@@ -49,6 +49,8 @@ namespace MontyHallLibrary.Models.GameStates
                 .Select(b => b.Key)
                 .ToList()
                 .RandomSelection(_rand);
+
+            GetBoxByKey(rand).IsOpen = true;
         }
 
         public override IList<int> RemainingKeys()

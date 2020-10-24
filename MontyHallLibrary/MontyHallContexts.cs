@@ -44,5 +44,10 @@ namespace MontyHallLibrary
         {
             _state.Select(this, key);
         }
+
+        public override string ToString()
+        {
+            return _state.ToString();
+        }
     }
 }
