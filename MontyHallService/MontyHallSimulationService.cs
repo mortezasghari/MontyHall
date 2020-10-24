@@ -50,7 +50,8 @@ namespace MontyHallService
                     game.Select(select);
 
                     /// You can ask for as much help as the game allows.
-                    for (int j = 0; j < _setting.Helps; j++)
+
+                    while (game.NumberOfRemainingHelp > 0)
                     {
                         game.GetHelp();
 
@@ -62,6 +63,7 @@ namespace MontyHallService
                             game.Select(select);
                         }
                     }
+
 
                     /// Finish the game and check if You won or lost. 
                     if (game.FinishGame())
