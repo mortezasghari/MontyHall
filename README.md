@@ -26,3 +26,21 @@ Every combination of these setting can't result in an actual game:
 Its client project which is using Blazor WebAssembly to provide access and show the result of the simulation. On the main page, there is a 2 option. one number of simulations and the other a checkbox. if the checkbox is selected simulation will change its mind whenever giving the change. if it is not selected the simulation won't change the box which has been selected. 
 ### MontyHallWeb.Shared
 DTOs are shared with the server and client. 
+
+## Running it.
+You should have the latest version of dotnet core installed on your computer. 
+### Visual Studio
+1. clone the repo 
+1. Open the solution in Visual Studio 2019
+1. Make sure "MontyHallWeb.Server" is selected as the startup project.
+1. Run it.
+
+### Using dotnet core CLI (on windows)
+```
+git clone https://github.com/mortezasghari/MontyHall.git
+cd .\MontyHall\
+dotnet build .\MontyHall.sln
+cd .\MontyHallWeb\Server\
+dotnet run .\MontyHallWeb.Server.csproj
+```
+Now can access it using the link "http://localhost:5000/"
