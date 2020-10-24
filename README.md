@@ -23,7 +23,7 @@ Every combination of these setting can't result in an actual game:
 - Number of Prizes should be at least 1
 - Number of boxes should be bigger than the number of prizes + number of helps. 
 ### MontyHallWeb.Client 
-Its client project which is using Blazor WebAssembly to provide access and show the result of the simulation. On the main page, there is a 2 option. one number of simulations and the other a checkbox. if the checkbox is selected simulation will change its mind whenever giving the change. if it is not selected the simulation won't change the box which has been selected. 
+It's the client project which is using Blazor WebAssembly to provide access and show the result of the simulation. On the main page, there is a 2 option. one number of simulations and the other a checkbox. if the checkbox is selected simulation will change its mind whenever giving the change. if it is not selected the simulation won't change the box which has been selected. 
 ### MontyHallWeb.Shared
 DTOs are shared with the server and client. 
 
