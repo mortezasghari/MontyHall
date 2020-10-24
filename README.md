@@ -6,15 +6,15 @@ _This application will try to use simulation to prove the paradox._
 ## Solution structure
 This solution is implemented in 6 projects.
 ### MontyHallLibrary
-This project is Library for "Monty Hall Game". 
+This project is the Library for "Monty Hall Game". 
 ### MontyHallService
 This Project includes a simulation that tries to prove the paradox. should you change the box or not. 
 ### MontyHallTest
 Unit tests for the whole solution exist in this project. 
 ### MontyHallWeb.Server 
-You can access the simulation via rest API using this project. there is a section in the "appsetting.json" file, with the name of "GameSetting" you can configure the Game using these settings. 
+You can access the simulation via rest API using this project. there is a section in the "appsetting.json" file, with the name "GameSetting", you can configure the Game using these settings. 
 1. "Boxes": the number of boxes, 
-1. "Helps": the number of helps you can ask. (simulation will take all the help it can.)
+1. "Helps": the number of helps you can ask. (simulation will take all the help it gets.)
 1. "Prizes": is a list of prizes. (The Game can differentiate between prizes, but for the simulation, we only check if you have won something.)
  
 Every combination of these setting can't result in an actual game:
