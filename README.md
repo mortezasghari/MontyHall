@@ -43,4 +43,4 @@ dotnet build .\MontyHall.sln
 cd .\MontyHallWeb\Server\
 dotnet run .\MontyHallWeb.Server.csproj
 ```
-Now can access it using the link "http://localhost:5000/"
+Now you can access it using the link "http://localhost:5000/"
